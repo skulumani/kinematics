@@ -1,49 +1,76 @@
 # module for rotation kinematics
 import numpy as np
 
-def rot1(angle):
-    """
+def rot1(angle, form='c'):
+    """ROT1
     Elementary rotation about the first axis. For row vectors b = a.dot(R)
     """
     cos_a = np.cos(angle)
     sin_a = np.sin(angle)
-
     rot_mat = np.identity(3)
-    rot_mat[1, 1] = cos_a
-    rot_mat[1, 2] = sin_a
-    rot_mat[2, 1] = -sin_a
-    rot_mat[2, 2] = cos_a
+
+    if form=='c':
+        rot_mat[1, 1] = cos_a
+        rot_mat[1, 2] = -sin_a
+        rot_mat[2, 1] = sin_a
+        rot_mat[2, 2] = cos_a
+    elif form=='r':
+        rot_mat[1, 1] = cos_a
+        rot_mat[1, 2] = sin_a
+        rot_mat[2, 1] = -sin_a
+        rot_mat[2, 2] = cos_a
+    else:
+        print("Unknown input. 'r' or 'c' for row/column notation.")
+        return 1
 
     return rot_mat
 
-def rot2(angle):
+def rot2(angle, form='c'):
     """
     Elementary rotation about the second axis. For row vectors b = a.dot(R)
     """
     cos_a = np.cos(angle)
     sin_a = np.sin(angle)
-    
     rot_mat = np.identity(3)
-    rot_mat[0, 0] = cos_a
-    rot_mat[0, 2] = -sin_a
-    rot_mat[2, 0] = sin_a
-    rot_mat[2, 2] = cos_a
-    
+
+    if form == 'c':
+        rot_mat[0, 0] = cos_a
+        rot_mat[0, 2] = sin_a
+        rot_mat[2, 0] = -sin_a
+        rot_mat[2, 2] = cos_a
+    elif form == 'r': 
+        rot_mat[0, 0] = cos_a
+        rot_mat[0, 2] = -sin_a
+        rot_mat[2, 0] = sin_a
+        rot_mat[2, 2] = cos_a
+    else:
+        print("Unknown input. 'r' or 'c' for row/column notation.")
+        return 1
+
     return rot_mat
  
-def rot3(angle):
+def rot3(angle, form='c'):
     """
     Elementary rotation about the third axis. For row vectors b = a.dot(R)
     """
     cos_a = np.cos(angle)
     sin_a = np.sin(angle)
-    
     rot_mat = np.identity(3)
-    rot_mat[0, 0] = cos_a
-    rot_mat[0, 1] = sin_a
-    rot_mat[1, 0] = -sin_a
-    rot_mat[1, 1] = cos_a
-    
+
+    if form == 'c':
+        rot_mat[0, 0] = cos_a
+        rot_mat[0, 1] = -sin_a
+        rot_mat[1, 0] = sin_a
+        rot_mat[1, 1] = cos_a
+    elif form == 'r':
+        rot_mat[0, 0] = cos_a
+        rot_mat[0, 1] = sin_a
+        rot_mat[1, 0] = -sin_a
+        rot_mat[1, 1] = cos_a
+    else:
+        print("Unknown input. 'r' or 'c' for row/column notation.")
+        return 1
+
     return rot_mat
  
 def dcm2body313(dcm):

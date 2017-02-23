@@ -46,3 +46,42 @@ class TestEulerRot():
     def test_rot3_determinant_1(self):
         mat = attitude.rot3(self.angle)
         np.testing.assert_allclose(np.linalg.det(mat), 1)
+
+
+class TestEulerRot90_column():
+    angle = np.pi/2
+    b1 = np.array([1, 0, 0])
+    b2 = np.array([0, 1, 0])
+    b3 = np.array([0, 0, 1])
+
+    R1 = attitude.rot1(angle, 'c')
+    R2 = attitude.rot2(angle, 'c')
+    R3 = attitude.rot3(angle, 'c')
+
+    def test_rot1_90_b1(self):
+        np.testing.assert_array_almost_equal(self.R1.dot(self.b1), self.b1)
+
+    def test_rot1_90_b2(self):
+        np.testing.assert_array_almost_equal(self.R1.dot(self.b2), self.b3)
+
+    def test_rot1_90_b3(self):
+        np.testing.assert_array_almost_equal(self.R1.dot(self.b3), -self.b2)
+
+    def test_rot2_90_b1(self):
+        np.testing.assert_array_almost_equal(self.R2.dot(self.b1), -self.b3)
+
+    def test_rot2_90_b2(self):
+        np.testing.assert_array_almost_equal(self.R2.dot(self.b2), self.b2)
+
+    def test_rot2_90_b3(self):
+        np.testing.assert_array_almost_equal(self.R2.dot(self.b3), self.b1)
+
+    def test_rot3_90_b1(self):
+        np.testing.assert_array_almost_equal(self.R3.dot(self.b1), self.b2)
+
+    def test_rot3_90_b2(self):
+        np.testing.assert_array_almost_equal(self.R3.dot(self.b2), -self.b1)
+
+    def test_rot3_90_b3(self):
+        np.testing.assert_array_almost_equal(self.R3.dot(self.b3), self.b3)
+    
