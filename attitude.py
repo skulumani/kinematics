@@ -7,15 +7,15 @@ def rot1(angle):
     """
     cos_a = np.cos(angle)
     sin_a = np.sin(angle)
-    
+
     rot_mat = np.identity(3)
-    rot_mat[1,1] = cos_a
-    rot_mat[1,2] = sin_a
-    rot_mat[2,1] = -sin_a
-    rot_mat[2,2] = cos_a
-    
+    rot_mat[1, 1] = cos_a
+    rot_mat[1, 2] = sin_a
+    rot_mat[2, 1] = -sin_a
+    rot_mat[2, 2] = cos_a
+
     return rot_mat
-    
+
 def rot2(angle):
     """
     Elementary rotation about the second axis. For row vectors b = a.dot(R)
@@ -24,13 +24,13 @@ def rot2(angle):
     sin_a = np.sin(angle)
     
     rot_mat = np.identity(3)
-    rot_mat[0,0] = cos_a
-    rot_mat[0,2] = -sin_a
-    rot_mat[2,0] = sin_a
-    rot_mat[2,2] = cos_a
+    rot_mat[0, 0] = cos_a
+    rot_mat[0, 2] = -sin_a
+    rot_mat[2, 0] = sin_a
+    rot_mat[2, 2] = cos_a
     
     return rot_mat
-    
+ 
 def rot3(angle):
     """
     Elementary rotation about the third axis. For row vectors b = a.dot(R)
@@ -39,10 +39,10 @@ def rot3(angle):
     sin_a = np.sin(angle)
     
     rot_mat = np.identity(3)
-    rot_mat[0,0] = cos_a
-    rot_mat[0,1] = sin_a
-    rot_mat[1,0] = -sin_a
-    rot_mat[1,1] = cos_a
+    rot_mat[0, 0] = cos_a
+    rot_mat[0, 1] = sin_a
+    rot_mat[1, 0] = -sin_a
+    rot_mat[1, 1] = cos_a
     
     return rot_mat
  
@@ -52,9 +52,9 @@ def dcm2body313(dcm):
     """
     theta = np.zeros(3)
 
-    theta[0] = np.arctan2(dcm[2,0],dcm[2,1])
-    theta[1] = np.arccos(dcm[2,2])
-    theta[2]= np.arctan2(dcm[0,2],-dcm[1,2])
+    theta[0] = np.arctan2(dcm[2, 0], dcm[2, 1])
+    theta[1] = np.arccos(dcm[2, 2])
+    theta[2] = np.arctan2(dcm[0, 2], -dcm[1, 2])
 
     return theta
 
@@ -230,6 +230,4 @@ def test_rot_mat_in_special_orthogonal_group(R):
     np.testing.assert_array_almost_equal(R.T.dot(R), np.eye(3,3), decimal=2)
 
 if __name__ == "__main__":
-    angle = math.pi/4.0
-    
-    print(rot1(angle))
+    pass
