@@ -3,7 +3,7 @@ import numpy as np
 
 def rot1(angle):
     """
-    Elementary rotation about the first axis. For column vectors b = R*a
+    Elementary rotation about the first axis. For row vectors b = a.dot(R)
     """
     cos_a = np.cos(angle)
     sin_a = np.sin(angle)
@@ -18,7 +18,7 @@ def rot1(angle):
     
 def rot2(angle):
     """
-    Elementary rotation about the second axis. For column vectors b = R a
+    Elementary rotation about the second axis. For row vectors b = a.dot(R)
     """
     cos_a = np.cos(angle)
     sin_a = np.sin(angle)
@@ -33,7 +33,7 @@ def rot2(angle):
     
 def rot3(angle):
     """
-    Elementary rotation about the third axis. For column vectors b = R a
+    Elementary rotation about the third axis. For row vectors b = a.dot(R)
     """
     cos_a = np.cos(angle)
     sin_a = np.sin(angle)
