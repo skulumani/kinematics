@@ -1,24 +1,69 @@
-"""
-    Copyright (C) 2017  GWU Flight Dynamics and Control Laboratory 
 
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
+# Copyright (C) 2017 GWU Flight Dynamics and Control Laboratory 
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
 
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+"""Attitude Kinematics - transformations between attitude representations
+
+This module provides a variety of functions to perform attitude kinematics.
+It transforms between a variety of attitude representations, provides functions
+for working with attitude, 
+
+Example
+-------
+Provide some examples of how to use this module
+
+References
+----------
+[1] M. D. Shuster, “A survey of attitude representations,” Journal of the Astronautical Sciences, vol. 41, no. 8, pp. 439–517, 1993.
+[2] P. C. Hughes, Spacecraft Attitude Dynamics. Dover Publications, 2004.
+[3] J. R. Wertz, Spacecraft Attitude Determination and Control, vol. 73. Springer, 1978.
+
+Requirements
+------------
+List all the required components for this library to work properly.
+
+.. _NumPy Documentation HOWTO:
+   https://github.com/numpy/numpy/blob/master/doc/HOWTO_DOCUMENT.rst.txt
+
 """
 import numpy as np
 
 def rot1(angle, form='c'):
-    """ROT1
-    Elementary rotation about the first axis. For row vectors b = a.dot(R)
+    """Euler rotation about first axis
+
+    This computes the rotation matrix associated with a rotation about the first
+    axis. It will output matrices assuming column or row format vectors. 
+
+    For example, to transform a vector from reference frame b to reference frame a:
+
+    Column Vectors : a = rot1(angle, 'c').dot(b)
+    Row Vectors    : a = b.dot(rot1(angle, 'r'))
+
+    It should be clear that rot1(angle, 'c') = rot1(angle, 'r').T
+
+    Parameters
+    ----------
+    angle : float
+        Angle of rotation about first axis. In radians
+    form : str
+        Flag to choose between row or column vector convention.
+
+    Returns
+    -------
+    mat : numpy.ndarray of shape (3,3)
+        Rotation matrix
     """
     cos_a = np.cos(angle)
     sin_a = np.sin(angle)
@@ -41,8 +86,29 @@ def rot1(angle, form='c'):
     return rot_mat
 
 def rot2(angle, form='c'):
-    """
-    Elementary rotation about the second axis. For row vectors b = a.dot(R)
+    """Euler rotation about second axis
+
+    This computes the rotation matrix associated with a rotation about the first
+    axis. It will output matrices assuming column or row format vectors. 
+
+    For example, to transform a vector from reference frame b to reference frame a:
+
+    Column Vectors : a = rot2(angle, 'c').dot(b)
+    Row Vectors    : a = b.dot(rot1(angle, 'r'))
+
+    It should be clear that rot2(angle, 'c') = rot2(angle, 'r').T
+
+    Parameters
+    ----------
+    angle : float
+        Angle of rotation about second axis. In radians
+    form : str
+        Flag to choose between row or column vector convention.
+
+    Returns
+    -------
+    mat : numpy.ndarray of shape (3,3)
+        Rotation matrix
     """
     cos_a = np.cos(angle)
     sin_a = np.sin(angle)
@@ -65,8 +131,29 @@ def rot2(angle, form='c'):
     return rot_mat
  
 def rot3(angle, form='c'):
-    """
-    Elementary rotation about the third axis. For row vectors b = a.dot(R)
+    """Euler rotation about thrid axis
+
+    This computes the rotation matrix associated with a rotation about the third
+    axis. It will output matrices assuming column or row format vectors. 
+
+    For example, to transform a vector from reference frame b to reference frame a:
+
+    Column Vectors : a = rot3(angle, 'c').dot(b)
+    Row Vectors    : a = b.dot(rot3(angle, 'r'))
+
+    It should be clear that rot3(angle, 'c') = rot3(angle, 'r').T
+
+    Parameters
+    ----------
+    angle : float
+        Angle of rotation about first axis. In radians
+    form : str
+        Flag to choose between row or column vector convention.
+
+    Returns
+    -------
+    mat : numpy.ndarray of shape (3,3)
+        Rotation matrix
     """
     cos_a = np.cos(angle)
     sin_a = np.sin(angle)
