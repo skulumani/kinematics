@@ -101,3 +101,16 @@ class TestEulerRot90_column():
     def test_rot3_90_b3(self):
         np.testing.assert_array_almost_equal(self.R3.dot(self.b3), self.b3)
     
+
+class TestExpMap():
+    angle = (np.pi - 0) * np.random.rand(1) + 0
+    axis = np.array([1, 0, 0])
+    R = attitude.rot1(angle)
+
+    def test_axisangletodcm(self):
+        np.testing.assert_array_almost_equal(attitude.rot1(self.angle), attitude.axisangletodcm(self.angle, self.axis))
+
+    def test_dcmtoaxisangle(self):
+        angle, axis = attitude.dcmtoaxisangle(self.R)
+        np.testing.assert_array_almost_equal(angle, self.angle)
+        np.testing.assert_array_almost_equal(axis, self.axis)
