@@ -249,7 +249,7 @@ def hat_map(vec):
         skew - 3,3 skew symmetric matrix
 
     """
-
+    vec = np.squeeze(vec)
     skew = np.array([
                     [0, -vec[2], vec[1]],
                     [vec[2], 0, -vec[0]],
