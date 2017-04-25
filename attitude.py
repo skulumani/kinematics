@@ -26,7 +26,7 @@ Provide some examples of how to use this module
 
 References
 ----------
-[1] M. D. Shuster, “A survey of attitude representations,” Journal of the Astronautical Sciences, vol. 41, no. 8, pp. 439–517, 1993.
+[1] M. D. Shuster, A survey of attitude representations, Journal of the Astronautical Sciences, vol. 41, no. 8, pp. 439-517, 1993.
 [2] P. C. Hughes, Spacecraft Attitude Dynamics. Dover Publications, 2004.
 [3] J. R. Wertz, Spacecraft Attitude Determination and Control, vol. 73. Springer, 1978.
 
