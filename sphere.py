@@ -6,7 +6,7 @@ Most usually we tend to deal with the 1-sphere and the 2-sphere.
 """
 import numpy as np
 
-def sphere_rand(n):
+def rand(n, seed=9):
     """Random vector from the n-Sphere
 
     This function will return a random vector which is an element of the n-Sphere.
@@ -23,15 +23,15 @@ def sphere_rand(n):
     Returns
     -------
     rvec 
-        Random (n,) numpy vector with a norm of 1
+        Random (n+1,) numpy vector with a norm of 1
 
     """
-
-    rvec = np.random.rand(n)
+    rs = np.random.RandomState(seed)
+    rvec = rs.rand(n+1)
     rvec = rvec / np.linalg.norm(rvec)
     return rvec
 
-def sphere_tan_rand(q):
+def tan_rand(q, seed=9):
     """Find a random vector in the tangent space of the n sphere
 
     This function will find a random orthogonal vector to q.
@@ -39,16 +39,17 @@ def sphere_tan_rand(q):
     Parameters
     ----------
     q
-        (n,) array which is in the n-sphere
+        (n+1,) array which is in the n-sphere
 
     Returns
     -------
     qd
-        (n,) array which is orthogonal to n-sphere and also random
+        (n+1,) array which is orthogonal to n-sphere and also random
 
     """
-
-    rvec = np.random.rand(q.shape[0])
+    # probably need a check in case we get a parallel vector
+    rs = np.random.RandomState(seed)
+    rvec = rs.rand(q.shape[0])
 
     qd = np.cross(rvec, q)
     qd = qd / np.linalg.norm(qd)
