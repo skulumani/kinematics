@@ -54,4 +54,9 @@ def tan_rand(q, seed=9):
     qd = np.cross(rvec, q)
     qd = qd / np.linalg.norm(qd)
 
+    while np.dot(q, qd) > 1e-6:
+        rvec = rs.rand(q.shape[0])
+        qd = np.cross(rvec, q)
+        qd = qd / np.linalg.norm(qd)
+
     return qd

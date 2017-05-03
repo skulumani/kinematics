@@ -10,6 +10,6 @@ def test_two_sphere_random_vector_norm():
 
 def test_two_sphere_tangent_vector():
     vec = sphere.rand(2)
-    vecd = sphere.tan_rand(vec)
+    vecd = sphere.tan_rand(vec, 9)
 
     np.testing.assert_almost_equal(np.dot(vec, vecd), 0)
