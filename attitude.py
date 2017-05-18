@@ -271,8 +271,20 @@ def vee_map(skew):
 def dcmtoquat(dcm):
     """Convert DCM to quaternion
     
-        Assume a positive scalar part of the quaternion
+    This function will convert a rotation matrix, also called a direction
+    cosine matrix into the equivalent quaternion.
 
+    Parameters:
+    ----------
+    dcm - (3,3) numpy array
+        Numpy rotation matrix which defines a rotation from the b to a frame
+
+    Returns:
+    --------
+    quat - (4,) numpy array
+        Array defining a quaterion where the quaternion is defined in terms of
+        a vector and a scalar part.  The vector is related to the eigen axis
+        and equivalent in both reference frames [x y z w]
     """
     quat = np.zeros(4)
     quat[-1] = 1/2*np.sqrt(np.trace(dcm)+1)
@@ -283,7 +295,20 @@ def dcmtoquat(dcm):
 def quattodcm(quat):
     """Convert quaternion to DCM
 
-    Assume last element is the scalar part
+    This function will convert a quaternion to the equivalent rotation matrix,
+    or direction cosine matrix.
+
+    Parameters:
+    ----------
+    quat - (4,) numpy array
+        Array defining a quaterion where the quaternion is defined in terms of
+        a vector and a scalar part.  The vector is related to the eigen axis
+        and equivalent in both reference frames [x y z w]
+
+    Returns:
+    --------
+    dcm - (3,3) numpy array
+        Numpy rotation matrix which defines a rotation from the b to a frame
     """
 
     dcm = (quat[-1]**2-np.inner(quat[0:3], quat[0:3]))*np.eye(3,3) + 2*np.outer(quat[0:3],quat[0:3]) + 2*quat[-1]*hat_map(quat[0:3])
