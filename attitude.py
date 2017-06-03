@@ -38,6 +38,7 @@ List all the required components for this library to work properly.
    https://github.com/numpy/numpy/blob/master/doc/HOWTO_DOCUMENT.rst.txt
 
 """
+from __future__ import absolute_import, division, print_function, unicode_literals
 import numpy as np
 
 def rot1(angle, form='c'):
@@ -128,8 +129,8 @@ def rot2(angle, form='c'):
         print("Unknown input. 'r' or 'c' for row/column notation.")
         return 1
 
-    return rot_mat
- 
+    return rot_mat 
+
 def rot3(angle, form='c'):
     """Euler rotation about thrid axis
 

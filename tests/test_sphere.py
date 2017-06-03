@@ -1,6 +1,7 @@
 """This will test our functions on the n-sphere
 
 """
+from __future__ import absolute_import, division, print_function, unicode_literals
 from .. import sphere
 import numpy as np
 
