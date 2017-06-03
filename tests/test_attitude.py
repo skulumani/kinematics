@@ -115,3 +115,24 @@ class TestExpMap():
         angle, axis = attitude.dcmtoaxisangle(self.R)
         np.testing.assert_array_almost_equal(angle, self.angle)
         np.testing.assert_array_almost_equal(axis, self.axis)
+
+class TestQuaternion():
+    angle = (2*np.pi - 0) * np.random.rand(1) + 0
+    dcm = attitude.rot1(angle)
+    quat = attitude.dcmtoquat(dcm)
+
+    dcm_identity = np.eye(3,3)
+    quat_identity = attitude.dcmtoquat(dcm_identity)
+
+    def test_dcmtoquaternion_unit_norm(self):
+        np.testing.assert_equal(np.linalg.norm(self.quat), 1)
+
+    def test_quaternion_back_to_rotation_matrix(self):
+        np.testing.assert_array_almost_equal(attitude.quattodcm(self.quat),
+                                            self.dcm)
+
+    def test_identity_quaternion_scalar_one(self):
+        np.testing.assert_equal(self.quat_identity[-1], 1)
+    
+    def test_identity_quaternion_vector_zero(self):
+        np.testing.assert_array_almost_equal(self.quat_identity[0:3], np.zeros(3))
