@@ -125,7 +125,7 @@ class TestQuaternion():
     quat_identity = attitude.dcmtoquat(dcm_identity)
 
     def test_dcmtoquaternion_unit_norm(self):
-        np.testing.assert_equal(np.linalg.norm(self.quat), 1)
+        np.testing.assert_almost_equal(np.linalg.norm(self.quat), 1)
 
     def test_quaternion_back_to_rotation_matrix(self):
         np.testing.assert_array_almost_equal(attitude.quattodcm(self.quat),
