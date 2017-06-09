@@ -136,3 +136,26 @@ class TestQuaternion():
     
     def test_identity_quaternion_vector_zero(self):
         np.testing.assert_array_almost_equal(self.quat_identity[0:3], np.zeros(3))
+
+class TestNormalize():
+    
+    def test_lower_limit_circle(self):
+        expected = -180 
+        actual = attitude.normalize(-180, -180, 180)
+        np.testing.assert_almost_equal(actual, expected)
+
+    def test_upper_limit_circle(self):
+        expected = -180
+        actual = attitude.normalize(180, -180, 180)
+        np.testing.assert_almost_equal(actual, expected)
+
+    def test_past_upper_limit_circle(self):
+        expected = -179
+        actual = attitude.normalize(181, -180, 180)
+        np.testing.assert_almost_equal(actual, expected)
+
+    def test_past_lower_limit_circle(self):
+        expected = 179
+        actual = attitude.normalize(-181, -180, 180)
+        np.testing.assert_almost_equal(actual, expected)
+
