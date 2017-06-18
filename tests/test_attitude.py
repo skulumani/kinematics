@@ -158,4 +158,9 @@ class TestNormalize():
         expected = 179
         actual = attitude.normalize(-181, -180, 180)
         np.testing.assert_almost_equal(actual, expected)
-
+    
+    def test_vectorized_interior(self):
+        angles = np.linspace(10, 50, 10)
+        expected = angles
+        actual = attitude.normalize(angles, 0, 180)
+        np.testing.assert_allclose(actual, expected)

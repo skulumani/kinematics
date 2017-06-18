@@ -385,7 +385,7 @@ def test_rot_mat_in_special_orthogonal_group(R):
     np.testing.assert_array_almost_equal(np.linalg.det(R), 1, decimal=2)
     np.testing.assert_array_almost_equal(R.T.dot(R), np.eye(3,3), decimal=2)
 
-def normalize(num, lower=0, upper=360, b=False):
+def normalize(num_in, lower=0, upper=360, b=False):
     """Normalize number to range [lower, upper) or [lower, upper].
 
     Parameters
@@ -481,31 +481,32 @@ def normalize(num, lower=0, upper=360, b=False):
     # abs(num), since the lower and upper limits need not be 0. We need
     # to add half size of the range, so that the final result is lower +
     # <value> or upper - <value>, respectively.
-    res = num
-    if not b:
-        res = num
-        if num > upper or num == lower:
-            num = lower + abs(num + upper) % (abs(lower) + abs(upper))
-        if num < lower or num == upper:
-            num = upper - abs(num - lower) % (abs(lower) + abs(upper))
+    if not hasattr(num_in, "__iter__"):
+        num_in = [num_in]
 
-        res = lower if num == upper else num
-    else:
-        total_length = abs(lower) + abs(upper)
-        if num < -total_length:
-            num += ceil(num / (-2 * total_length)) * 2 * total_length
-        if num > total_length:
-            num -= floor(num / (2 * total_length)) * 2 * total_length
-        if num > upper:
-            num = total_length - num
-        if num < lower:
-            num = -total_length - num
+    res  = []
+    for num in num_in:
+        if not b:
+            if num > upper or num == lower:
+                num = lower + abs(num + upper) % (abs(lower) + abs(upper))
+            if num < lower or num == upper:
+                num = upper - abs(num - lower) % (abs(lower) + abs(upper))
 
-        res = num
+            res.append(lower if num == upper else num)
+        else:
+            total_length = abs(lower) + abs(upper)
+            if num < -total_length:
+                num += ceil(num / (-2 * total_length)) * 2 * total_length
+            if num > total_length:
+                num -= floor(num / (2 * total_length)) * 2 * total_length
+            if num > upper:
+                num = total_length - num
+            if num < lower:
+                num = -total_length - num
 
-    res *= 1.0  # Make all numbers float, to be consistent
+            res.append(num)
 
-    return res
+    return np.array(res)
 
 if __name__ == "__main__":
     pass
