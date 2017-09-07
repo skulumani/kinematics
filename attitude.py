@@ -482,7 +482,7 @@ def normalize(num_in, lower=0, upper=360, b=False):
     # to add half size of the range, so that the final result is lower +
     # <value> or upper - <value>, respectively.
     if not hasattr(num_in, "__iter__"):
-        num_in = [num_in]
+        num_in = np.asarray([num_in], dtype=np.float)
 
     res  = []
     for num in num_in:
@@ -506,7 +506,8 @@ def normalize(num_in, lower=0, upper=360, b=False):
 
             res.append(num)
 
-    return np.array(res)
+    return np.asarray(res, dtype=np.float)
+
 
 if __name__ == "__main__":
     pass
