@@ -2,7 +2,7 @@
 
 """
 from __future__ import absolute_import, division, print_function, unicode_literals
-from .. import sphere
+from kinematics import sphere
 import numpy as np
 
 def test_two_sphere_random_vector_norm():
