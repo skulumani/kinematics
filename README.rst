@@ -11,15 +11,15 @@ dependency.
 | |Travis Build Status|   | |Coverage Status|   | |Documentation Status|   | |Citation| |
 +-------------------------+---------------------+--------------------------+------------+
 
-.. |Travis Build Status| .. image:: https://travis-ci.org/skulumani/kinematics.svg?branch=master
+.. |Travis Build Status| image:: https://travis-ci.org/skulumani/kinematics.svg?branch=master
     :target: https://travis-ci.org/skulumani/kinematics
 .. |Coverage Status| image:: https://coveralls.io/repos/github/skulumani/kinematics/badge.svg?branch=master
    :target: https://coveralls.io/github/skulumani/kinematics?branch=master
 .. |Documentation Status| image:: https://readthedocs.org/projects/kinematics/badge/?version=latest
     :target: http://kinematics.readthedocs.io/en/latest/?badge=latest
     :alt: Documentation Status
-.. |Citation| image:: https://zenodo.org/badge/95155784.svg
-   :target: https://zenodo.org/badge/latestdoi/95155784
+.. |Citation| image:: https://zenodo.org/badge/82479376.svg
+   :target: https://zenodo.org/badge/latestdoi/82479376
 
 Installation
 ============
