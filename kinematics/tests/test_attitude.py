@@ -64,6 +64,31 @@ class TestEulerRot():
         mat = attitude.rot3(self.angle)
         np.testing.assert_allclose(np.linalg.det(mat), 1)
 
+    def test_rot1_orthogonal_row(self):
+        mat = attitude.rot1(self.angle, 'r')
+        np.testing.assert_array_almost_equal(mat.T.dot(mat), np.eye(3, 3))
+
+    def test_rot2_orthogonal_row(self):
+        mat = attitude.rot2(self.angle, 'r')
+        np.testing.assert_array_almost_equal(mat.T.dot(mat), np.eye(3, 3))
+
+    def test_rot3_orthogonal_row(self):
+        mat = attitude.rot3(self.angle, 'r')
+        np.testing.assert_array_almost_equal(mat.T.dot(mat), np.eye(3, 3))
+
+    def test_rot1_determinant_1_row(self):
+        mat = attitude.rot1(self.angle, 'r')
+        np.testing.assert_allclose(np.linalg.det(mat), 1)
+
+    def test_rot2_determinant_1_row(self):
+        mat = attitude.rot2(self.angle, 'r')
+        np.testing.assert_allclose(np.linalg.det(mat), 1)
+
+    def test_rot3_determinant_1_row(self):
+        mat = attitude.rot3(self.angle, 'r')
+        np.testing.assert_allclose(np.linalg.det(mat), 1)
+
+
 
 class TestEulerRot90_column():
     angle = np.pi/2
@@ -74,6 +99,19 @@ class TestEulerRot90_column():
     R1 = attitude.rot1(angle, 'c')
     R2 = attitude.rot2(angle, 'c')
     R3 = attitude.rot3(angle, 'c')
+    
+    R1_row = attitude.rot1(angle, 'r')
+    R2_row = attitude.rot2(angle, 'r')
+    R3_row = attitude.rot3(angle, 'r')
+    
+    def test_rot1_transpose(self):
+        np.testing.assert_allclose(self.R1_row, self.R1.T)
+
+    def test_rot2_transpose(self):
+        np.testing.assert_allclose(self.R2_row, self.R2.T)
+
+    def test_rot3_transpose(self):
+        np.testing.assert_allclose(self.R3_row, self.R3.T)
 
     def test_rot1_90_b1(self):
         np.testing.assert_array_almost_equal(self.R1.dot(self.b1), self.b1)
@@ -102,6 +140,19 @@ class TestEulerRot90_column():
     def test_rot3_90_b3(self):
         np.testing.assert_array_almost_equal(self.R3.dot(self.b3), self.b3)
     
+class TestEulerRotInvalid():
+    R1 = attitude.rot1(0, 'x')
+    R2 = attitude.rot2(0, 'x')
+    R3 = attitude.rot3(0, 'x')
+    invalid = 1
+    def test_rot1_invalid(self):
+        np.testing.assert_allclose(self.R1, self.invalid)
+
+    def test_rot2_invalid(self):
+        np.testing.assert_allclose(self.R2, self.invalid)
+
+    def test_rot3_invalid(self):
+        np.testing.assert_allclose(self.R3, self.invalid)
 
 class TestExpMap():
     angle = (np.pi - 0) * np.random.rand(1) + 0
