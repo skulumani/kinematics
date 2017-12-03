@@ -23,7 +23,7 @@ setup(
     # Versions should comply with PEP440.  For a discussion on single-sourcing
     # the version across setup.py and the project code, see
     # https://packaging.python.org/en/latest/single_source_version.html
-    version='0.0.1',
+    version='0.0.2',
 
     description='A kinematics library',
     long_description=long_description,
@@ -87,6 +87,18 @@ setup(
         'test': ['pytest', 'pytest-cov', 'coverage'],
     },
 
+    extras_require={
+        # 'dev': ['check-manifest'],
+        'test': ['pytest', 'pytest-cov', 'coverage'],
+    },
+
+    # testing requires for pytest
+    setup_requires=['pytest-runner'],
+
+    tests_require=['pytest'],
+
+    python_requires='>=3',
+ 
     # If there are data files included in your packages that need to be
     # installed, specify them here.  If using Python 2.6 or less, then these
     # have to be included in MANIFEST.in as well.
