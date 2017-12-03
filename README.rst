@@ -34,10 +34,11 @@ Documentation
 
 Docs will be hosted on Read the Docs
 
-Citing ``astro``
+Citing ``kinematics``
 ================
 
-Create a citation
+If you find this package useful, it would be very helpful to cite it in your work.
+You can find a citation link above.
 
 Dependencies
 ============
