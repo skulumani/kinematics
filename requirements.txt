@@ -1,0 +1,7 @@
+numpy
+pytest
+pytest-cov
+coveralls
+sphinx
+sphinx-autobuild
+twine
