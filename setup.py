@@ -87,11 +87,6 @@ setup(
         'test': ['pytest', 'pytest-cov', 'coverage'],
     },
 
-    extras_require={
-        # 'dev': ['check-manifest'],
-        'test': ['pytest', 'pytest-cov', 'coverage'],
-    },
-
     # testing requires for pytest
     setup_requires=['pytest-runner'],
 
