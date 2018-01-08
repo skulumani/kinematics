@@ -64,3 +64,48 @@ def tan_rand(q, seed=9):
         qd = qd / np.linalg.norm(qd)
 
     return qd
+
+def perturb_vec(q, cone_half_angle=2):
+    r"""Perturb a vector randomly
+
+    qp = perturb_vec(q, cone_half_angle=2)
+
+    Parameters
+    ----------
+    q : (n,) numpy array
+        Vector to perturb
+    cone_half_angle : float
+        Maximum angle to perturb the vector in degrees
+
+    Returns
+    -------
+    perturbed : (n,) numpy array
+        Perturbed numpy array
+
+    Author
+    ------
+    Shankar Kulumani		GWU		skulumani@gwu.edu
+
+    References
+    ----------
+
+    .. [1] https://stackoverflow.com/questions/2659257/perturb-vector-by-some-angle
+
+    """
+    rand_vec = tan_rand(q)
+    cross_vector = attitude.unit_vector(np.cross(q, rand_vec))
+
+    s = np.random.uniform(0, 1, 1)
+    r = np.random.uniform(0, 1, 1)
+
+    h = np.cos(np.deg2rad(cone_half_angle))
+
+    phi = 2 * np.pi * s
+    z = h + ( 1- h) * r
+    sinT = np.sqrt(1 - z**2)
+    x = np.cos(phi) * sinT
+    y = np.sin(phi) * sinT
+
+    perturbed = rand_vec * x + cross_vector * y + q * z
+    
+    return perturbed
