@@ -2,8 +2,10 @@
 
 """
 from __future__ import absolute_import, division, print_function, unicode_literals
-from kinematics import sphere
+
 import numpy as np
+
+from kinematics import sphere
 
 def test_two_sphere_random_vector_norm():
     vec = sphere.rand(2)

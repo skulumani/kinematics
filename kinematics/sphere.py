@@ -5,7 +5,10 @@ Most usually we tend to deal with the 1-sphere and the 2-sphere.
 
 """
 from __future__ import absolute_import, division, print_function, unicode_literals
+
 import numpy as np
+
+from kinematics import attitude
 
 def rand(n, seed=9):
     """Random vector from the n-Sphere
