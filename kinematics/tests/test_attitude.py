@@ -215,3 +215,15 @@ class TestNormalize():
         expected = angles
         actual = attitude.normalize(angles, 0, 180)
         np.testing.assert_allclose(actual, expected)
+
+class TestUnitVector():
+    
+    q = np.array([5, 0, 0])
+    qhat_true = np.array([1, 0, 0])
+    qhat = attitude.unit_vector(q)
+
+    def test_norm(self):
+        np.testing.assert_allclose(np.linalg.norm(self.qhat), 1)
+
+    def test_unit_vector(self):
+        np.testing.assert_allclose(self.qhat, self.qhat_true)

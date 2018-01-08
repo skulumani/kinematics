@@ -509,5 +509,32 @@ def normalize(num_in, lower=0, upper=360, b=False):
     return np.asarray(res, dtype=np.float)
 
 
+def unit_vector(q):
+    r"""Unit vector in direction of q
+
+    qhat = unit_vector(q)
+
+    Parameters
+    ----------
+    q : (n,) numpy array
+        Vector in Rn
+
+    Returns
+    -------
+    qhat : (n,) numpy array
+        The unit vector in the direction of q
+
+    Notes
+    -----
+    You may include some math:
+
+    .. math:: \hat q  = \frac{q}{\norm{q}}
+
+    Author
+    ------
+    Shankar Kulumani		GWU		skulumani@gwu.edu
+    """
+    return q / np.linalg.norm(q)
+
 if __name__ == "__main__":
     pass
