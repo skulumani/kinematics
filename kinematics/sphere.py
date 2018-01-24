@@ -10,13 +10,13 @@ import numpy as np
 
 from kinematics import attitude
 
-def rand(n, seed=9):
+def rand(n, **kwargs):
     """Random vector from the n-Sphere
 
     This function will return a random vector which is an element of the n-Sphere.
-    The n-Sphere is defined as a vector in R^n with a norm of one. 
+    The n-Sphere is defined as a vector in R^n+1 with a norm of one. 
 
-    Basically, we'll find a random vector in R^n and normalize it. 
+    Basically, we'll find a random vector in R^n+1 and normalize it. 
     This is somewhat like mapping a cube to a sphere but hopefully it doesn't cause any
     issues in the future.
 
@@ -30,7 +30,7 @@ def rand(n, seed=9):
         Random (n+1,) numpy vector with a norm of 1
 
     """
-    rs = np.random.RandomState(seed)
+    rs = np.random.RandomState(**kwargs)
     rvec = rs.rand(n+1)
     rvec = rvec / np.linalg.norm(rvec)
     return rvec
