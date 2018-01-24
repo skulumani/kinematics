@@ -8,9 +8,6 @@ matrix:
         - os: linux
           dist: trusty
           python: 3.6
-branches:
-    only:
-        - master
 before_install:
     - pip install --upgrade pip setuptools wheel
     - pip install --only-binary=numpy,scipy numpy scipy
@@ -28,6 +25,6 @@ deploy:
     password:
         secure: rz+JpkprVoeTpjwf16WXaQ71MMzaHI1PAxhv0nuyOAKBmmHV+G40hSeIo8nqUpstkhEHrh5C20N2aj3caCNkjX4soPz/lcL4lZ6qcrT5aJBJlEwMGCQ+rhKl5t8QY3l8+hAttwZQLFhrSodFedwxCT/cbhCR5jfxnvafFdmP/PtZVGBdBXbpNBPFuSQPSq7xqL1/SrpzvPLt320WNdr8yR8x1FpLoTC8pY42n3V2/OSvvBi+U4Nsm5GBP4F8rmf8QDZKRwuwBFPGBJsT+25WM3sI2AVTL8tsekruQarYRncZrW/rccICi2fQIqDGVxvtl+IleSvh0S8fZ8V+8ZdRBJ2o+d2HaQXaUZzzkpiw41zGbEdoV24+8CgO5rOx6CHXZj1s8S7xsV3HkCfqUgeQSZJOG2azIrmWqgLLZ8vRBG6VoTCmktuSBEOqvFdiiePYXvPTyxLPaou+va08LOVvjK+KiZLC/cjWY3lETQGYDRYasJFwRjLng1MXSqOrMTDlTORJxpdcKmHmM/iIo+AK5G5iROXBtLwavT3BZmuqiiZX1QPjAPFgrT+NfSl0xBc3IuWZs5d939F9sjaXhngvk2DDoKf9MVLzb8O4tKBVyZrnY5VJj4j2Gno7zumE6VM0Tgy9pVMF/5WRl7V+NmsrDu2bZ6GE+dxZzLrYWUgfsgE=
     on:
-        tags: false
+        tags: true
         branch: master
         distributions: sdist bdist_wheel
