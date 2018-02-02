@@ -17,8 +17,7 @@ def rand(n, **kwargs):
     The n-Sphere is defined as a vector in R^n+1 with a norm of one. 
 
     Basically, we'll find a random vector in R^n+1 and normalize it. 
-    This is somewhat like mapping a cube to a sphere but hopefully it doesn't cause any
-    issues in the future.
+    This uses the method of Marsaglia 1972.
 
     Parameters
     ----------
@@ -30,8 +29,7 @@ def rand(n, **kwargs):
         Random (n+1,) numpy vector with a norm of 1
 
     """
-    rs = np.random.RandomState(**kwargs)
-    rvec = rs.rand(n+1)
+    rvec = np.random.randn(3)
     rvec = rvec / np.linalg.norm(rvec)
     return rvec
 
