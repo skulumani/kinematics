@@ -47,7 +47,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = 'Kinematics'
-copyright = '2017, Shankar Kulumani'
+copyright = '2018, Shankar Kulumani'
 author = 'Shankar Kulumani'
 
 # The version info for the project you're documenting, acts as replacement for
