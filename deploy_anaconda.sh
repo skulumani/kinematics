@@ -7,7 +7,7 @@ set -e
 PACKAGENAME=kinematics
 
 echo "Converting conda package..."
-conda convert --platform all $HOME/conda-build/${PACKAGENAME}-*.tar.bz2 --output-dir ${HOME}/conda_platforms/
+conda convert --platform all $HOME/conda-build/linux-64/${PACKAGENAME}-*.tar.bz2 --output-dir ${HOME}/conda_platforms/
 
 echo "Deploying to Anaconda.org..."
 anaconda -t $ANACONDA_TOKEN upload ${HOME}/conda_platforms/**/${PACKAGENAME}-*.tar.bz2
