@@ -1,5 +1,7 @@
 language: python
 sudo: false
+env:
+  - PACKAGE_NAME=kinematics
 matrix:
     include:
         - os: linux
@@ -42,8 +44,7 @@ install:
   # - conda build ./conda-build --no-anaconda-upload --python=${TRAVIS_PYTHON_VERSION} --output
   - CONDA_OUTPUT=$(conda build ./conda-build --no-anaconda-upload --output --python=${TRAVIS_PYTHON_VERSION})
   - echo ${CONDA_OUTPUT}
-  # - ls ${CONDA_OUTPUT}
-  - conda install ${CONDA_OUTPUT} --use-local
+  - conda install $HOME/miniconda/envs/test_environment/conda-bld/${OS}/${PACKAGE_NAME}*.bz2
 script:
   - pytest --pyargs kinematics # test installed version
   - pytest --cov=kinematics # get coverage
