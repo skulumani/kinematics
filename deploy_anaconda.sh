@@ -11,6 +11,7 @@ conda convert --platform all $HOME/conda-build/linux-64/${PACKAGENAME}-*.tar.bz2
 
 echo "Deploying to Anaconda.org..."
 anaconda -t $ANACONDA_TOKEN upload ${HOME}/conda_platforms/**/${PACKAGENAME}-*.tar.bz2
+anaconda -t $ANACONDA_TOKEN upload ${HOME}/conda-build/linux-64/${PACKAGENAME}-*.tar.bz2
 
 echo "Successfully deployed to Anaconda.org."
 exit 0
