@@ -3,68 +3,69 @@ sudo: false
 env:
   - PACKAGE_NAME=kinematics
 matrix:
-    include:
-        - os: linux
-          dist: xenial
-          python: 3.4
-        - os: linux
-          dist: xenial
-          python: 3.5
-        - os: linux
-          dist: xenial
-          python: 3.6
-        - os: linux
-          dist: xenial
-          python: 3.7
-before_install:
-  - sudo apt-get update
-  - if [[ "$TRAVIS_PYTHON_VERSION" == "2.7" ]]; then
-    wget https://repo.continuum.io/miniconda/Miniconda2-latest-Linux-x86_64.sh -O ${HOME}/miniconda.sh;
-    else
-    wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ${HOME}/miniconda.sh;
-    fi
-  - bash ${HOME}/miniconda.sh -b -p $HOME/miniconda
-  - export PATH="$HOME/miniconda/bin:$PATH"
-  - hash -r
-  - conda config --set always_yes yes --set changeps1 no
-  - conda update -q conda
-  # Useful for debugging any issues with conda
-  - conda info -a
-  # build a python enviornment matching travis python version
-  - conda create -q -n test_environment python=$TRAVIS_PYTHON_VERSION pip setuptools wheel numpy scipy pytest pytest-cov 
-  - source activate test_environment
-  - conda install -q -y conda-build anaconda-client
-  - pip install coveralls twine
-  # - pip install --upgrade pip setuptools wheel
-  # - pip install --only-binary=numpy,scipy numpy scipy
-  # - pip install twine
-  # - pip install -r requirements.txt
-install:
-  # - python setup.py install
-  # - conda build ./conda-build --no-anaconda-upload --python=${TRAVIS_PYTHON_VERSION} --output
-  - mkdir ${HOME}/conda-build
-  - conda build ./conda-build --no-anaconda-upload --output-folder ~/conda-build --python=${TRAVIS_PYTHON_VERSION}
-  - conda install "${HOME}/conda-build/linux-64/${PACKAGE_NAME}-*.bz2"
-script:
-  - pytest --pyargs kinematics # test installed version
-  - pytest --cov=kinematics # get coverage
-after_success:
-  - coveralls
-deploy:
-  skip_cleanup: true
-  - provider: pypi
-    user: skulumani
-    password:
-      secure: rz+JpkprVoeTpjwf16WXaQ71MMzaHI1PAxhv0nuyOAKBmmHV+G40hSeIo8nqUpstkhEHrh5C20N2aj3caCNkjX4soPz/lcL4lZ6qcrT5aJBJlEwMGCQ+rhKl5t8QY3l8+hAttwZQLFhrSodFedwxCT/cbhCR5jfxnvafFdmP/PtZVGBdBXbpNBPFuSQPSq7xqL1/SrpzvPLt320WNdr8yR8x1FpLoTC8pY42n3V2/OSvvBi+U4Nsm5GBP4F8rmf8QDZKRwuwBFPGBJsT+25WM3sI2AVTL8tsekruQarYRncZrW/rccICi2fQIqDGVxvtl+IleSvh0S8fZ8V+8ZdRBJ2o+d2HaQXaUZzzkpiw41zGbEdoV24+8CgO5rOx6CHXZj1s8S7xsV3HkCfqUgeQSZJOG2azIrmWqgLLZ8vRBG6VoTCmktuSBEOqvFdiiePYXvPTyxLPaou+va08LOVvjK+KiZLC/cjWY3lETQGYDRYasJFwRjLng1MXSqOrMTDlTORJxpdcKmHmM/iIo+AK5G5iROXBtLwavT3BZmuqiiZX1QPjAPFgrT+NfSl0xBc3IuWZs5d939F9sjaXhngvk2DDoKf9MVLzb8O4tKBVyZrnY5VJj4j2Gno7zumE6VM0Tgy9pVMF/5WRl7V+NmsrDu2bZ6GE+dxZzLrYWUgfsgE=
-    on:
-      tags: true
-      branch: master
-      distributions: sdist bdist_wheel
-      python: "${TRAVIS_PYTHON_VERSION}"
-  - provider: script
-    script: bash deploy_anaconda.sh 
-    on:
-      tags: true
-      branch: master
+  include:
+    - os: linux
+      dist: xenial
+      python: 3.4
+    - os: linux
+      dist: xenial
+      python: 3.5
+    - os: linux
+      dist: xenial
+      python: 3.6
+    - os: linux
+      dist: xenial
+      python: 3.7
+      before_install:
+        - sudo apt-get update
+        - if [[ "$TRAVIS_PYTHON_VERSION" == "2.7" ]]; then
+          wget https://repo.continuum.io/miniconda/Miniconda2-latest-Linux-x86_64.sh -O ${HOME}/miniconda.sh;
+          else
+          wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ${HOME}/miniconda.sh;
+          fi
+        - bash ${HOME}/miniconda.sh -b -p $HOME/miniconda
+        - export PATH="$HOME/miniconda/bin:$PATH"
+        - hash -r
+        - conda config --set always_yes yes --set changeps1 no
+        - conda update -q conda
+          # Useful for debugging any issues with conda
+        - conda info -a
+          # build a python enviornment matching travis python version
+        - conda create -q -n test_environment python=$TRAVIS_PYTHON_VERSION pip setuptools wheel numpy scipy pytest pytest-cov 
+        - source activate test_environment
+        - conda install -q -y conda-build anaconda-client
+        - pip install coveralls twine
+          # - pip install --upgrade pip setuptools wheel
+          # - pip install --only-binary=numpy,scipy numpy scipy
+          # - pip install twine
+          # - pip install -r requirements.txt
+      install:
+        # - python setup.py install
+        # - conda build ./conda-build --no-anaconda-upload --python=${TRAVIS_PYTHON_VERSION} --output
+        - mkdir ${HOME}/conda-build
+        - conda build ./conda-build --no-anaconda-upload --output-folder ~/conda-build --python=${TRAVIS_PYTHON_VERSION}
+        - conda install "${HOME}/conda-build/linux-64/${PACKAGE_NAME}-*.bz2"
+      script:
+        - pytest --pyargs kinematics # test installed version
+        - pytest --cov=kinematics # get coverage
+      after_success:
+        - coveralls
+      deploy:
+        - provider: pypi
+          skip_cleanup: true
+          user: skulumani
+          password:
+            secure: rz+JpkprVoeTpjwf16WXaQ71MMzaHI1PAxhv0nuyOAKBmmHV+G40hSeIo8nqUpstkhEHrh5C20N2aj3caCNkjX4soPz/lcL4lZ6qcrT5aJBJlEwMGCQ+rhKl5t8QY3l8+hAttwZQLFhrSodFedwxCT/cbhCR5jfxnvafFdmP/PtZVGBdBXbpNBPFuSQPSq7xqL1/SrpzvPLt320WNdr8yR8x1FpLoTC8pY42n3V2/OSvvBi+U4Nsm5GBP4F8rmf8QDZKRwuwBFPGBJsT+25WM3sI2AVTL8tsekruQarYRncZrW/rccICi2fQIqDGVxvtl+IleSvh0S8fZ8V+8ZdRBJ2o+d2HaQXaUZzzkpiw41zGbEdoV24+8CgO5rOx6CHXZj1s8S7xsV3HkCfqUgeQSZJOG2azIrmWqgLLZ8vRBG6VoTCmktuSBEOqvFdiiePYXvPTyxLPaou+va08LOVvjK+KiZLC/cjWY3lETQGYDRYasJFwRjLng1MXSqOrMTDlTORJxpdcKmHmM/iIo+AK5G5iROXBtLwavT3BZmuqiiZX1QPjAPFgrT+NfSl0xBc3IuWZs5d939F9sjaXhngvk2DDoKf9MVLzb8O4tKBVyZrnY5VJj4j2Gno7zumE6VM0Tgy9pVMF/5WRl7V+NmsrDu2bZ6GE+dxZzLrYWUgfsgE=
+            on:
+              tags: true
+              branch: master
+              distributions: sdist bdist_wheel
+              python: "${TRAVIS_PYTHON_VERSION}"
+        - provider: script
+          script: bash deploy_anaconda.sh 
+          skip_cleanup: true
+          on:
+            tags: true
+            branch: master
 
 
