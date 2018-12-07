@@ -39,8 +39,11 @@ before_install:
   # - pip install -r requirements.txt
 install:
   # - python setup.py install
-  - CONDA_OUTPUT=$(conda build ./conda-build -q --no-anaconda-upload --output --python=${TRAVIS_PYTHON_VERSION})
-  - conda install ${CONDA_OUTPUT} --use-local
+  - conda build ./conda-build --no-anaconda-upload --python=${TRAVIS_PYTHON_VERSION}
+  # - CONDA_OUTPUT=$(conda build ./conda-build --no-anaconda-upload --output --python=${TRAVIS_PYTHON_VERSION})
+  # - echo ${CONDA_OUTPUT}
+  # - ls ${CONDA_OUTPUT}
+  # - conda install ${CONDA_OUTPUT} --use-local
 script:
   - pytest --pyargs kinematics # test installed version
   - pytest --cov=kinematics # get coverage
@@ -56,3 +59,4 @@ deploy:
       tags: true
       branch: master
       distributions: sdist bdist_wheel
+      python: "${TRAVIS_PYTHON_VERSION}"
