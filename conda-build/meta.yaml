@@ -15,7 +15,7 @@ build:
 
 requirements:
   build:
-    - python >=3.4
+    - python {{ PY_VER }}*,>=3.4
     - setuptools
     - numpy >=1.12
     - pytest-runner

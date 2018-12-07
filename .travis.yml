@@ -38,7 +38,7 @@ install:
   # - python setup.py install
   # - conda build ./conda-build --no-anaconda-upload --python=${TRAVIS_PYTHON_VERSION} --output
   - mkdir ${HOME}/conda-build
-  - conda build ./conda-build --no-anaconda-upload --output-folder ~/conda-build --python ${TRAVIS_PYTHON_VERSION}
+  - conda build ./conda-build --no-anaconda-upload --output-folder ~/conda-build --python=${TRAVIS_PYTHON_VERSION}
   - conda install ${HOME}/conda-build/linux-64/${PACKAGE_NAME}-*.bz2
 script:
   - pytest --pyargs kinematics # test installed version
