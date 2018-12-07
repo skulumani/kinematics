@@ -2,11 +2,15 @@ language: python
 sudo: false
 env:
   - PACKAGE_NAME=kinematics
-python:
-  - "3.4"
-  - "3.5"
-  - "3.6"
-  - "3.7"
+dist: xenial
+matrix:
+  include:
+    - python: 3.4
+    - python: 3.5
+    - python: 3.6
+    - python: 3.7
+      dist: xenial
+      sudo: true
 before_install:
   - sudo apt-get update
   - if [[ "$TRAVIS_PYTHON_VERSION" == "2.7" ]]; then
