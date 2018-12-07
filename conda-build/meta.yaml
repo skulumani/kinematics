@@ -15,12 +15,12 @@ build:
 
 requirements:
   build:
-    - python >=3.3
+    - python >=3.4
     - setuptools
     - numpy >=1.12
     - pytest-runner
   run:
-    - python >=3.3
+    - python >=3.4
     - numpy >=1.12
 test:
   imports:
