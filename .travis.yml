@@ -2,6 +2,7 @@ language: python
 sudo: false
 env:
   - PACKAGE_NAME=kinematics
+  - OS=linux-64
 matrix:
     include:
         - os: linux
@@ -42,15 +43,16 @@ before_install:
 install:
   # - python setup.py install
   # - conda build ./conda-build --no-anaconda-upload --python=${TRAVIS_PYTHON_VERSION} --output
-  - conda build ./conda-build --no-anaconda-upload --output-folder ./ --python=${TRAVIS_PYTHON_VERSION}
-  # - conda install $HOME/miniconda/envs/test_environment/conda-bld/${OS}/${PACKAGE_NAME}*.bz2
-  - ls
+  - mkdir ${HOME}/conda-build
+  - conda build ./conda-build --no-anaconda-upload --output-folder ~/conda-build --python=${TRAVIS_PYTHON_VERSION}
+  - conda install $HOME/conda-build/${OS}/${PACKAGE_NAME}*.bz2
 script:
-  # - pytest --pyargs kinematics # test installed version
+  - pytest --pyargs kinematics # test installed version
   - pytest --cov=kinematics # get coverage
 after_success:
   - coveralls
 deploy:
+  skip_cleanup: true
   provider: pypi
   user: skulumani
   password:
