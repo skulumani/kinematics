@@ -42,7 +42,7 @@ before_install:
 install:
   # - python setup.py install
   # - conda build ./conda-build --no-anaconda-upload --python=${TRAVIS_PYTHON_VERSION} --output
-  - conda build ./conda-build --no-anaconda-upload --output-folder ./ --python=${TRAVIS_PYTHON_VERSION})
+  - conda build ./conda-build --no-anaconda-upload --output-folder ./ --python=${TRAVIS_PYTHON_VERSION}
   # - conda install $HOME/miniconda/envs/test_environment/conda-bld/${OS}/${PACKAGE_NAME}*.bz2
   - ls
 script:
