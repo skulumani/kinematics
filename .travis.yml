@@ -29,7 +29,7 @@ before_install:
   # Useful for debugging any issues with conda
   - conda info -a
   # build a python enviornment matching travis python version
-  - conda -q -n test_environment python=$TRAVIS_PYTHON_VERSION pip setuptools wheel numpy scipy twine pytest pytest-cov coveralls
+  - conda create -q -n test_environment python=$TRAVIS_PYTHON_VERSION pip setuptools wheel numpy scipy twine pytest pytest-cov coveralls
   - source activate test_environment
   - conda install -q -y conda-build anaconda-client
   # - pip install --upgrade pip setuptools wheel
@@ -45,6 +45,7 @@ script:
   - pytest --cov=kinematics # get coverage
 after_success:
   - coveralls
+  # deploy to anaconda if successful and on tag
 deploy:
   provider: pypi
   user: skulumani
