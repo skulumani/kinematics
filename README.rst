@@ -34,6 +34,14 @@ Documentation
 
 Docs will be hosted on Read the Docs
 
+Update travis to do the build, install, and test for both pypi install and conda install
+
+conda build
+
+conda convert
+
+anaconda uplaod
+
 Citing ``kinematics``
 ================
 
