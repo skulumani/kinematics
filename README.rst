@@ -1,15 +1,4 @@
-Attitude Kinematics in Python
-=======================
-
-``kinematics`` is Python package to perform attitude kinematics.
-It is written completely in Python and only requires ``numpy`` as a runtime 
-dependency.
-
-+-------------------------+---------------------+--------------------------+------------+
-| Continuous Integration  | Code Coverage       | Docs                     | Citation   |
-+=========================+=====================+==========================+============+
 | |Travis Build Status|   | |Coverage Status|   | |Documentation Status|   | |Citation| |
-+-------------------------+---------------------+--------------------------+------------+
 
 .. |Travis Build Status| image:: https://travis-ci.org/skulumani/kinematics.svg?branch=master
     :target: https://travis-ci.org/skulumani/kinematics
@@ -20,6 +9,14 @@ dependency.
     :alt: Documentation Status
 .. |Citation| image:: https://zenodo.org/badge/82479376.svg
    :target: https://zenodo.org/badge/latestdoi/82479376
+
+Attitude Kinematics in Python
+=======================
+
+``kinematics`` is Python package to perform attitude kinematics.
+It is written completely in Python and only requires ``numpy`` as a runtime 
+dependency.
+
 
 Installation
 ============
@@ -35,12 +32,6 @@ Documentation
 Docs will be hosted on Read the Docs
 
 Update travis to do the build, install, and test for both pypi install and conda install
-
-conda build
-
-conda convert
-
-anaconda uplaod
 
 Citing ``kinematics``
 ================
