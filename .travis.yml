@@ -48,7 +48,7 @@ install:
   # - conda build ./conda-build --no-anaconda-upload --python=${PYTHON_VERSION} --output
   - mkdir ${HOME}/conda-build
   - conda build ./conda-build --no-anaconda-upload --output-folder ~/conda-build --python=${PYTHON_VERSION}
-  - conda install ${HOME}/conda-build/linux-64/${PACKAGE_NAME}-*.bz2
+  - conda install ${HOME}/conda-build/linux-64/${PACKAGE_NAME}-*.bz2 --use-local
 script:
   - pytest --pyargs kinematics # test installed version
   - pytest --cov=kinematics # get coverage
