@@ -6,23 +6,23 @@ matrix:
   include:
     - os: linux
       dist: xenial
-      env: TRAVIS_PYTHON_VERSION=3.4
+      env: PYTHON_VERSION=3.4
     - os: linux
       dist: xenial
-      env: TRAVIS_PYTHON_VERSION=3.5
+      env: PYTHON_VERSION=3.5
     - os: linux
       dist: xenial
-      env: TRAVIS_PYTHON_VERSION=3.6
+      env: PYTHON_VERSION=3.6
     - os: linux
       dist: xenial
-      env: TRAVIS_PYTHON_VERSION=3.7
+      env: PYTHON_VERSION=3.7
 before_install:
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
     wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ${HOME}/miniconda.sh;
     elif [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
     wget https://repo.continuum.io/miniconda/Miniconda3-latest-MacOSX-x86_64.sh -O ${HOME}/miniconda.sh;
     fi
-  # - if [[ "$TRAVIS_PYTHON_VERSION" == "2.7" ]]; then
+  # - if [[ "$PYTHON_VERSION" == "2.7" ]]; then
   #   wget https://repo.continuum.io/miniconda/Miniconda2-latest-Linux-x86_64.sh -O ${HOME}/miniconda.sh;
   #   else
   #   wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ${HOME}/miniconda.sh;
@@ -35,7 +35,7 @@ before_install:
     # Useful for debugging any issues with conda
   - conda info -a
     # build a python enviornment matching travis python version
-  - conda create -q -n test_environment python=$TRAVIS_PYTHON_VERSION pip setuptools wheel numpy scipy pytest pytest-cov 
+  - conda create -q -n test_environment python=$PYTHON_VERSION pip setuptools wheel numpy scipy pytest pytest-cov 
   - source activate test_environment
   - conda install -q -y conda-build anaconda-client
   - pip install coveralls twine
@@ -45,9 +45,9 @@ before_install:
     # - pip install -r requirements.txt
 install:
   # - python setup.py install
-  # - conda build ./conda-build --no-anaconda-upload --python=${TRAVIS_PYTHON_VERSION} --output
+  # - conda build ./conda-build --no-anaconda-upload --python=${PYTHON_VERSION} --output
   - mkdir ${HOME}/conda-build
-  - conda build ./conda-build --no-anaconda-upload --output-folder ~/conda-build --python=${TRAVIS_PYTHON_VERSION}
+  - conda build ./conda-build --no-anaconda-upload --output-folder ~/conda-build --python=${PYTHON_VERSION}
   - conda install ${HOME}/conda-build/linux-64/${PACKAGE_NAME}-*.bz2
 script:
   - pytest --pyargs kinematics # test installed version
@@ -64,9 +64,9 @@ deploy:
     on:
       tags: true
       branch: master
-      condition: ${TRAVIS_OS_NAME} == "linux" && ${TRAVIS_PYTHON_VERSION} == "3.7"
+      condition: ${TRAVIS_OS_NAME} == "linux" && ${PYTHON_VERSION} == "3.7"
     distributions: "sdist bdist_wheel"
-    python: "${TRAVIS_PYTHON_VERSION}"
+    python: "${PYTHON_VERSION}"
   - provider: script
     script: bash deploy_anaconda.sh 
     skip_cleanup: true
