@@ -1,21 +1,15 @@
 language: python
 sudo: true
+os: linux
+dist: xenial
 env:
-  - PACKAGE_NAME=kinematics
-matrix:
-  include:
-    - os: linux
-      dist: xenial
-      env: PYTHON_VERSION=3.4
-    - os: linux
-      dist: xenial
-      env: PYTHON_VERSION=3.5
-    - os: linux
-      dist: xenial
-      env: PYTHON_VERSION=3.6
-    - os: linux
-      dist: xenial
-      env: PYTHON_VERSION=3.7
+  global:
+    - PACKAGE_NAME=kinematics
+  matrix:
+    - PYTHON_VERSION=3.4
+    - PYTHON_VERSION=3.5
+    - PYTHON_VERSION=3.6
+    - PYTHON_VERSION=3.7
 before_install:
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
     wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ${HOME}/miniconda.sh;
