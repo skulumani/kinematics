@@ -6,11 +6,17 @@
 Welcome to kinematics's documentation!
 ======================================
 
+This is the documentation for the ``kinematics`` package. 
+It (will) provides a comprehensive attitude kinematics library to perform many common attitude transformations and computations.
+
+
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
 
+   installation.rst
    documentation.rst
+
 
 Indices and tables
 ==================

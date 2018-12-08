@@ -1,4 +1,4 @@
-Kinematics Package
+Module Reference
 ==================
 
 attitude module
