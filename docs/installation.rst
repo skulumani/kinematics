@@ -5,6 +5,9 @@ The ``kinematics`` package is simple to install.
 It is available from both ``pypi`` as well as ``anaconda``.
 Furthermore, the only hard dependency is on the ``numpy`` package which is mostly likely already being used in your project.
 
+Installing
+===========
+
 To install using ``pip``, you can run::
 
     pip install kinematics
@@ -16,5 +19,41 @@ This is beneficial as ``conda`` provides many additional tools to build independ
 To instead install using ``conda`` simply use::
     
     conda install -c skulumani kinematics
+
+Building from source
+===================
+
+The package has been extensively tested on both OSX and Linux (Ubuntu). 
+Binary distributions are provided which should also allow it to installed and used on Windows but this has not been tested. 
+
+To build from source, one should first clone the repository::
+
+    git clone https://github.com/skulumani/kinematics.git
+
+Ensure that you have ``numpy`` installed on your system::
+
+    pip install numpy
+
+or if you're using ``conda`` create a new enviornment with the appropriate dependencies::
+
+    conda create -n kinematics_env python=3 numpy
+
+With the correct dependencies you can then install a development version of the package to ease development::
+
+    cd kinematics
+    pip setup.py -e .
+
+
+Testing
+===============
+
+The package has a series of unit tests, located in the ``tests`` directory.
+You can run the tests yourself using ``pytest``::
+
+    pytest --vv --pyargs=kinematics
+
+
+
+
 
 
