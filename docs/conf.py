@@ -87,7 +87,7 @@ todo_include_todos = False
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 #
-html_theme = 'alabaster'
+html_theme = 'default'
 
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
@@ -105,18 +105,18 @@ html_static_path = ['_static']
 #
 # This is required for the alabaster theme
 # refs: http://alabaster.readthedocs.io/en/latest/installation.html#sidebars
-html_sidebars = {
-    '**': [
-        'relations.html',  # needs 'show_related': True theme option to display
-        'searchbox.html',
-    ]
-}
+# html_sidebars = {
+#     '**': [
+#         'relations.html',  # needs 'show_related': True theme option to display
+#         'searchbox.html',
+#     ]
+# }
 
 
 # -- Options for HTMLHelp output ------------------------------------------
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'Kinematicsdoc'
+htmlhelp_basename = 'kinematicsdoc'
 
 
 # -- Options for LaTeX output ---------------------------------------------
@@ -143,7 +143,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, 'Kinematics.tex', 'Kinematics Documentation',
+    (master_doc, 'kinematics.tex', 'kinematics Documentation',
      'Shankar Kulumani', 'manual'),
 ]
 
@@ -153,7 +153,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'kinematics', 'Kinematics Documentation',
+    (master_doc, 'kinematics', 'kinematics Documentation',
      [author], 1)
 ]
 
@@ -164,8 +164,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    (master_doc, 'Kinematics', 'Kinematics Documentation',
-     author, 'Kinematics', 'One line description of project.',
+    (master_doc, 'kinematics', 'kinematics Documentation',
+     author, 'kinematics', 'One line description of project.',
      'Miscellaneous'),
 ]
 
