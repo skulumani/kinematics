@@ -15,6 +15,12 @@ matrix:
       dist: xenial
       env: PACKAGE_NAME=kinematics PYTHON_VERSION=3.7 OS_PATH=linux-64
     - os: osx
+      env: PACKAGE_NAME=kinematics PYTHON_VERSION=3.4 OS_PATH=osx-64
+    - os: osx
+      env: PACKAGE_NAME=kinematics PYTHON_VERSION=3.5 OS_PATH=osx-64
+    - os: osx
+      env: PACKAGE_NAME=kinematics PYTHON_VERSION=3.6 OS_PATH=osx-64
+    - os: osx
       env: PACKAGE_NAME=kinematics PYTHON_VERSION=3.7 OS_PATH=osx-64
 
 before_install:
